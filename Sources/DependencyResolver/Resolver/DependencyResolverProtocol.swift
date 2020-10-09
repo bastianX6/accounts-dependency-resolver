@@ -38,4 +38,7 @@ public protocol DependencyResolverProtocol: ObservableObject {
     /// Get a `MovementResources` instance with expediture categories and stores
     /// - Parameter type: the type of value to get the object
     func getExpeditureResources<T>(forType type: T.Type) throws -> MovementResources
+
+    /// Application appearance
+    var appearance: Appearance { get }
 }

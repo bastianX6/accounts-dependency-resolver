@@ -25,6 +25,8 @@ public class DependencyResolver: DependencyResolverProtocol {
         self.resourcesReader = MovementResourcesReeader(bundle: bundle)
     }
 
+    public let appearance: Appearance = AppAppearance.shared
+
     // MARK: - Setup availability
 
     // Set availability configuration for data sources
