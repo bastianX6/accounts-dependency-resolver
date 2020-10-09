@@ -10,7 +10,7 @@ import DataManagement
 import Foundation
 
 /// Defines the way to resolve and get dependencies
-public protocol DependencyResolverProtocol {
+public protocol DependencyResolverProtocol: ObservableObject {
     /// Set availability configuration for data sources
     /// - Parameters:
     ///   - availability: availability configuration
