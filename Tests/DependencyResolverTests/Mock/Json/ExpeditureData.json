@@ -1,0 +1,19 @@
+{
+    "categories": [
+      {
+        "id": "ff7d31e2-a5e7-11e9-a2a3-2a2ae2dbcce4",
+        "name": "Otros",
+        "color": "teal",
+        "icon": "questionmark.circle.fill"
+      }
+    ],
+    "stores": [
+      {
+        "id": "ff7d3c64-a5e7-11e9-a2a3-2a2ae2dbcce4",
+        "name": "Otro",
+        "color": "teal",
+        "icon": "questionmark.circle.fill"
+      }
+    ]
+  }
+  

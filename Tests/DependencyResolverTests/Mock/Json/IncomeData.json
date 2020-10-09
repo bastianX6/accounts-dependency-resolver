@@ -1,0 +1,19 @@
+{
+    "categories": [
+      {
+        "id": "59868f5c-4e4b-4d4e-b291-306998f3a443",
+        "name": "Otros",
+        "color": "green",
+        "icon": "dollarsign.square.fill"
+      }
+    ],
+    "stores": [
+      {
+        "id": "2a574bba-5c27-43b4-b6bd-42de1e030d26",
+        "name": "Ingresos",
+        "color": "green",
+        "icon": "dollarsign.circle.fill"
+      }
+    ]
+  }
+  
