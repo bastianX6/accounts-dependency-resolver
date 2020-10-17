@@ -103,13 +103,13 @@ public class DependencyResolver: DependencyResolverProtocol {
         return try self.resourcesReader.readIncomeData()
     }
 
-    /// Get a `MovementResources` instance with expediture categories and stores
+    /// Get a `MovementResources` instance with expenditure categories and stores
     /// - Parameter type: the type of value to get the object
     /// - Throws:
     ///   - `DependencyResolverError.availabilityNotSet` if availability wasn't configured
     ///   - `DependencyResolverError.notAvailable` if resource is not available
     /// - Returns: A `MovementResources` instance
-    public func getExpeditureResources<T>(forType type: T.Type) throws -> MovementResources {
+    public func getExpenditureResources<T>(forType type: T.Type) throws -> MovementResources {
         guard let availability = self.resourcesAvailabilty[String(describing: type.self)] else {
             throw DependencyResolverError.availabilityNotSet
         }
@@ -118,6 +118,6 @@ public class DependencyResolver: DependencyResolverProtocol {
             throw DependencyResolverError.notAvailable
         }
 
-        return try self.resourcesReader.readExpeditureData()
+        return try self.resourcesReader.readExpenditureData()
     }
 }
