@@ -30,7 +30,7 @@ final class DependencyResolverTests: XCTestCase {
                                           forType: dataType)
 
         let incomesResources = try self.sut.getIncomeResources(forType: dataType)
-        let expensesResources = try self.sut.getExpeditureResources(forType: dataType)
+        let expensesResources = try self.sut.getExpenditureResources(forType: dataType)
 
         XCTAssert(type(of: incomesResources) == MovementResources.self)
         XCTAssert(type(of: expensesResources) == MovementResources.self)
@@ -80,7 +80,7 @@ final class DependencyResolverTests: XCTestCase {
             XCTAssertEqual(error as? DependencyResolverError, DependencyResolverError.availabilityNotSet)
         }
 
-        XCTAssertThrowsError(try self.sut.getExpeditureResources(forType: dataType),
+        XCTAssertThrowsError(try self.sut.getExpenditureResources(forType: dataType),
                              "Should throw an error") { error in
             XCTAssertEqual(error as? DependencyResolverError, DependencyResolverError.availabilityNotSet)
         }
@@ -100,7 +100,7 @@ final class DependencyResolverTests: XCTestCase {
             XCTAssertEqual(error as? DependencyResolverError, DependencyResolverError.notAvailable)
         }
 
-        XCTAssertThrowsError(try self.sut.getExpeditureResources(forType: dataType),
+        XCTAssertThrowsError(try self.sut.getExpenditureResources(forType: dataType),
                              "Should throw an error") { error in
             XCTAssertEqual(error as? DependencyResolverError, DependencyResolverError.notAvailable)
         }

@@ -10,7 +10,7 @@ import DataManagement
 import Foundation
 
 /// Defines the way to resolve and get dependencies
-public protocol DependencyResolverProtocol {
+public protocol DependencyResolverProtocol: ObservableObject {
     /// Set availability configuration for data sources
     /// - Parameters:
     ///   - availability: availability configuration
@@ -35,7 +35,10 @@ public protocol DependencyResolverProtocol {
     /// - Parameter type: the type of value to get the object
     func getIncomeResources<T>(forType type: T.Type) throws -> MovementResources
 
-    /// Get a `MovementResources` instance with expediture categories and stores
+    /// Get a `MovementResources` instance with expenditure categories and stores
     /// - Parameter type: the type of value to get the object
-    func getExpeditureResources<T>(forType type: T.Type) throws -> MovementResources
+    func getExpenditureResources<T>(forType type: T.Type) throws -> MovementResources
+
+    /// Application appearance
+    var appearance: Appearance { get }
 }

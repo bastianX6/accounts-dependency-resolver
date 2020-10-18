@@ -12,7 +12,7 @@ import Foundation
 
 class MovementResourcesReeader {
     private let incomeDataFileName = "IncomeData"
-    private let expeditureDataFileName = "ExpeditureData"
+    private let expenditureDataFileName = "ExpeditureData"
     private let fileExtension = "json"
 
     private let bundle: Bundle
@@ -25,8 +25,8 @@ class MovementResourcesReeader {
         return try self.readData(fileName: self.incomeDataFileName)
     }
 
-    func readExpeditureData() throws -> MovementResources {
-        return try self.readData(fileName: self.expeditureDataFileName)
+    func readExpenditureData() throws -> MovementResources {
+        return try self.readData(fileName: self.expenditureDataFileName)
     }
 
     private func readData(fileName: String) throws -> MovementResources {

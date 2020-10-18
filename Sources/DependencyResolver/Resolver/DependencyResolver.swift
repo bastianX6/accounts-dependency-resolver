@@ -12,8 +12,8 @@ import Foundation
 
 /// Default implementation of `DependencyResolverProtocol`
 public class DependencyResolver: DependencyResolverProtocol {
-    private var dataSourceAvailabilty: [String: DataSourceAvailability] = [:]
-    private var resourcesAvailabilty: [String: ResourcesAvailability] = [:]
+    private var dataSourceAvailability: [String: DataSourceAvailability] = [:]
+    private var resourcesAvailability: [String: ResourcesAvailability] = [:]
 
     private let dataSourceRead: DataSourceRead = CoreDataSourceRead()
     private let dataSourceModify: DataSourceModify = CoreDataSourceModify()
@@ -25,6 +25,8 @@ public class DependencyResolver: DependencyResolverProtocol {
         self.resourcesReader = MovementResourcesReeader(bundle: bundle)
     }
 
+    public let appearance: Appearance = AppAppearance.shared
+
     // MARK: - Setup availability
 
     // Set availability configuration for data sources
@@ -32,7 +34,7 @@ public class DependencyResolver: DependencyResolverProtocol {
     ///   - availability: availability configuration
     ///   - type: the type of value to set up availability
     public func setDataSourceAvailability<T>(_ availability: DataSourceAvailability, forType type: T.Type) {
-        self.dataSourceAvailabilty[String(describing: type.self)] = availability
+        self.dataSourceAvailability[String(describing: type.self)] = availability
     }
 
     /// Set availability configuration for data sources
@@ -40,7 +42,7 @@ public class DependencyResolver: DependencyResolverProtocol {
     ///   - availability: availability configuration
     ///   - type: the type of value to set up availability
     public func setResourcesAvailability<T>(_ availability: ResourcesAvailability, forType type: T.Type) {
-        self.resourcesAvailabilty[String(describing: type.self)] = availability
+        self.resourcesAvailability[String(describing: type.self)] = availability
     }
 
     // MARK: - Get data sources
@@ -52,7 +54,7 @@ public class DependencyResolver: DependencyResolverProtocol {
     ///   - `DependencyResolverError.notAvailable` if resource is not available
     /// - Returns: An object that implements the  `DataSourceRead` interface
     public func getDataSourceRead<T>(forType type: T.Type) throws -> DataSourceRead {
-        guard let availability = self.dataSourceAvailabilty[String(describing: type.self)] else {
+        guard let availability = self.dataSourceAvailability[String(describing: type.self)] else {
             throw DependencyResolverError.availabilityNotSet
         }
 
@@ -70,7 +72,7 @@ public class DependencyResolver: DependencyResolverProtocol {
     ///   - `DependencyResolverError.notAvailable` if resource is not available
     /// - Returns: An object that implements the  `DataSourceModify` interface
     public func getDataSourceModify<T>(forType type: T.Type) throws -> DataSourceModify {
-        guard let availability = self.dataSourceAvailabilty[String(describing: type.self)] else {
+        guard let availability = self.dataSourceAvailability[String(describing: type.self)] else {
             throw DependencyResolverError.availabilityNotSet
         }
 
@@ -90,7 +92,7 @@ public class DependencyResolver: DependencyResolverProtocol {
     ///   - `DependencyResolverError.notAvailable` if resource is not available
     /// - Returns: A `MovementResources` instance
     public func getIncomeResources<T>(forType type: T.Type) throws -> MovementResources {
-        guard let availability = self.resourcesAvailabilty[String(describing: type.self)] else {
+        guard let availability = self.resourcesAvailability[String(describing: type.self)] else {
             throw DependencyResolverError.availabilityNotSet
         }
 
@@ -101,14 +103,14 @@ public class DependencyResolver: DependencyResolverProtocol {
         return try self.resourcesReader.readIncomeData()
     }
 
-    /// Get a `MovementResources` instance with expediture categories and stores
+    /// Get a `MovementResources` instance with expenditure categories and stores
     /// - Parameter type: the type of value to get the object
     /// - Throws:
     ///   - `DependencyResolverError.availabilityNotSet` if availability wasn't configured
     ///   - `DependencyResolverError.notAvailable` if resource is not available
     /// - Returns: A `MovementResources` instance
-    public func getExpeditureResources<T>(forType type: T.Type) throws -> MovementResources {
-        guard let availability = self.resourcesAvailabilty[String(describing: type.self)] else {
+    public func getExpenditureResources<T>(forType type: T.Type) throws -> MovementResources {
+        guard let availability = self.resourcesAvailability[String(describing: type.self)] else {
             throw DependencyResolverError.availabilityNotSet
         }
 
@@ -116,6 +118,6 @@ public class DependencyResolver: DependencyResolverProtocol {
             throw DependencyResolverError.notAvailable
         }
 
-        return try self.resourcesReader.readExpeditureData()
+        return try self.resourcesReader.readExpenditureData()
     }
 }
